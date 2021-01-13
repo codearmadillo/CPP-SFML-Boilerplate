@@ -1,0 +1,13 @@
+# CMake
+build
+compile_commands.json
+information.txt
+cmake-build-debug
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+.cache
+.idea
