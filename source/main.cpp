@@ -1,3 +1,5 @@
+#include "config.h"
+#include "Entity.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 
@@ -5,12 +7,16 @@ int main()
 {
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFMLCPPBoilerplate");
-    // Dummy rectangle
-    sf::RectangleShape rectangle;
-    rectangle.setSize(sf::Vector2f(100, 50));
-    rectangle.setOutlineColor(sf::Color::Red);
-    rectangle.setOutlineThickness(5);
-    rectangle.setPosition(10, 20);
+    // Try creating entity (Test all dependencies compiling)
+    Entity test();
+    // Assign resource path
+    std::string source_dir = RESOURCE_PATH;
+    // Try to load texture
+    sf::Texture texture;
+    if (!texture.loadFromFile(source_dir + "turtle.png"))
+        return EXIT_FAILURE;
+    sf::Sprite sprite;
+    sprite.setTexture(texture, true);
     // Start the game loop
     while (window.isOpen())
     {
@@ -24,8 +30,8 @@ int main()
         }
         // Clear screen
         window.clear();
-        // Draw rectangle
-        window.draw(rectangle);
+        // Draw image
+        window.draw(sprite);
         // Update the window
         window.display();
     }
